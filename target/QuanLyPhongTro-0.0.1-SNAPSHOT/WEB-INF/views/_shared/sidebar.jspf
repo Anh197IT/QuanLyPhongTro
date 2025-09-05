@@ -1,0 +1,28 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<div class="sidebar">
+  <div class="d-flex align-items-center justify-content-between mb-2">
+    <h6 class="text-uppercase text-muted mb-0">Menu</h6>
+  </div>
+  <div class="list-group list-group-flush">
+    <a class="list-group-item list-group-item-action" href="${pageContext.request.contextPath}/">Trang chủ</a>
+    <c:choose>
+      <c:when test='${sessionScope.authUser != null && sessionScope.authUser.role == "ADMIN"}'>
+        <a class="list-group-item list-group-item-action" href='${pageContext.request.contextPath}/users'>Quản lý tài khoản</a>
+        <a class="list-group-item list-group-item-action" href='${pageContext.request.contextPath}/rooms'>Quản lý phòng</a>
+        <a class="list-group-item list-group-item-action" href='${pageContext.request.contextPath}/khachthue'>Quản lý khách thuê</a>
+        <a class="list-group-item list-group-item-action" href='${pageContext.request.contextPath}/hopdong'>Hợp đồng</a>
+        <a class="list-group-item list-group-item-action" href='${pageContext.request.contextPath}/hoadon'>Hóa đơn</a>
+      </c:when>
+      <c:when test='${sessionScope.authUser != null && sessionScope.authUser.role == "USER"}'>
+        <a class="list-group-item list-group-item-action" href='${pageContext.request.contextPath}/hopdong/mine'>Hợp đồng của tôi</a>
+        <a class="list-group-item list-group-item-action" href='${pageContext.request.contextPath}/hoadon/mine'>Hóa đơn của tôi</a>
+      </c:when>
+      <c:otherwise>
+      </c:otherwise>
+    </c:choose>
+  </div>
+  <div class="mt-3 small text-muted">
+    <span class="d-inline-block">© Simple House</span>
+  </div>
+</div>
